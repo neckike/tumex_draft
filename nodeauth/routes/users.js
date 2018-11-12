@@ -7,14 +7,14 @@ var bcrypt = require('bcryptjs');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-let client = redis.createClient();
+let client = module.exports = redis.createClient();
 
 
 client.on('connect', function(){
 	console.log('Connected to Redis');
 
 });
-//var User = require('../models/user');
+var User = require('../models/user');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -29,7 +29,7 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login',
-  passport.authenticate('local', {failureRedirect:'users/login', failureFlash: 'Invalid username or password'}),
+  passport.authenticate('local', {failureRedirect:'/users/login', failureFlash: 'Invalid username or password'}),
   function(req, res) {
     req.flash('success', 'You are now logged in');
     res.redirect('/');
@@ -45,12 +45,16 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-passport.use(new LocalStrategy(function(username, password, done){
+passport.use(new LocalStrategy({username: 'username', password: 'password'},function(username, password, done){
+
   User.getUserByUsername(username, function(err, user){
     if(err) throw err;
     if(!user){
       return done(null, false, {message: 'Unknown User'});
     }
+		// else{
+		// 	console.log('aHORA SIIIIIII, tu dijiste: '+ password + 'y la verdadera es: '+ user.password);
+		// }
 
     User.comparePassword(password, user.password, function(err, isMatch){
       if(err) return done(err);
@@ -108,7 +112,8 @@ router.post('/register', upload.single('profileimage'), function(req, res, next)
           	'email', email,
           	'username', username,
           	'password', password,
-            'profileimage', profileimage
+            'profileimage', profileimage,
+						'id', id
           	], function(err, reply){
           		if(err){
           			console.log(err);
@@ -120,10 +125,20 @@ router.post('/register', upload.single('profileimage'), function(req, res, next)
               res.location('/');
           		res.redirect('/');
           	});
+						client.sadd('username:'+username, id, function(err, reply){
+							if(err) throw err;
+
+						});
           });
         });
     });
 
   }
+});
+
+router.get('/logout', function(req, res){
+	req.logout();
+	req.flash('success', 'You are now logged out');
+	res.redirect('/users/login');
 });
 module.exports = router;
