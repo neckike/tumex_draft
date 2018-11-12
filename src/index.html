@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="layout.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="header">
+  <h1>TuMex</h1>
+  <p>Uniendo tenistas en M&#233;xico</p>
+</div>
+
+<div class="topnav">
+  <a href="perfil.html">Inicio</a>
+  <a href="#">Torneos</a>
+  <a href="acercade.html">&#191;Qui&#233;nes somos?</a>
+  <div class="loginbutton">
+    <span style="font-size: 10pt">Ingresa a tu portal</span>
+  <!--  <button onclick="document.getElementById('id01').style.display='block'">Login</button>-->
+  <button class="myBtn_multi">Login</button>
+  <span style="font-size: 10pt">&#191;No tienes cuenta?</span>
+  <button class="myBtn_multi">Reg&#237;strate</button>
+    <!--<button  onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Reg&#237;strate</button>-->
+  </div>
+
+  <!--<div class="profiledata">
+    <form action="perfil.html" target="_self" method="post">
+      <input type="text" name="nombre" placeholder="Mail" required>
+      <input type="password" name="contrasena" placeholder="Contrase&ntilde;a" required>
+      <input type="submit" value="Submit">
+    </form>
+  </div>-->
+  <!--<a href="#" style="float:right">Salir</a>-->
+</div>
+
+
+<!-- The Modal -->
+<div id="id01" class="modal modal_multi">
+  <!-- Modal Content -->
+  <form class="modal-content" action="perfil.html">
+
+    <div class="container">
+      <label for="uname"><b>Mail</b></label>
+      <input type="text" placeholder="Mail" name="umail" required>
+
+      <label for="psw"><b>Contrase&ntilde;a</b></label>
+      <input type="password" placeholder="Contrase&ntilde;a" name="psw" required>
+
+      <button class="loginbtn" type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Recordarme
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancelar</button>
+      <span class="psw">&#191;Olvidaste la <a href="#">contrase&ntilde;a?</a></span>
+    </div>
+  </form>
+</div>
+<!-- Inicia el de sign up -->
+<div id="id02" class="modal modal_multi">
+  <form class="modal-content" action="perfil.html">
+    <div class="container">
+      <span style="font-size:20pt">Reg&#237;strate</span>
+      <p>Favor de llenar los campos indicados</p>
+      <hr>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Ingresa mail" name="email" required>
+
+      <label for="psw"><b>Contrase&ntilde;a</b></label>
+      <input type="password" placeholder="Ingresa la contrase&ntilde;a" name="psw" required>
+
+      <label for="psw-repeat"><b>Repite la contrase&ntilde;a</b></label>
+      <input type="password" placeholder="Repite la contrase&ntilde;a" name="psw-repeat" required>
+
+      <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Recordarme
+      </label>
+
+      <p>Al crear una cuenta, aceptas nuestros t&#233;rminos y condiciones <a href="terminosycondiciones.html" target="_balnk" style="color:dodgerblue">T&#233;rminos y condiciones</a>.</p>
+
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- End ofModal Content -->
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <p>Hola!</p><br>
+      <p>Posiblemente mas anuncios</p>
+    </div>
+  </div>
+  <div class="centercolumn" >
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Dec 7, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Sep 2, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>Ads</h2>
+      <div class="fakeimg" style="height:100px;">Image</div>
+      <p>Aqui tu anuncio.</p>
+    </div>
+    <div class="card">
+      <h3>Ads</h3>
+      <div class="fakeimg"><p>Image</p></div>
+      <div class="fakeimg"><p>Image</p></div>
+      <div class="fakeimg"><p>Image</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
+<script src="loginmenu.js"></script>
+
+</body>
+</html>
