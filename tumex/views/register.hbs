@@ -1,0 +1,48 @@
+{{#if errors}}
+  {{#each errors }}
+    <!--<div class="alert alert-danger"><p> {{error.msg}}</p></div>-->
+    <div class="alert alert-danger"> {{this.msg}}</div>
+
+  {{/each}}
+{{/if}}
+
+<div>
+  <form class="modal-content" method="post" action="/users/register" enctype='multipart/form-data'>
+    <div class="container">
+      <span style="font-size:20pt">Reg&#237;strate</span>
+      <p>Favor de llenar los campos indicados</p>
+      <hr>
+      <label for="name"><b>Nombre(s)</b></label>
+      <input type="text" placeholder="Ingresa tu(s) nombre" name="name" required>
+
+      <label for="forname"><b>Apellidos</b></label>
+      <input type="text" placeholder="Ingresa tu apellido" name="forname" required>
+
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Ingresa mail" name="email" required>
+
+      <label for="username"><b>Usuario</b></label>
+      <input type="text" placeholder="Ingresa tu usuario deseado" name="username" required>
+
+      <label for="password"><b>Contrase&ntilde;a</b></label>
+      <input type="password" placeholder="Ingresa la contrase&ntilde;a" name="password" required>
+
+      <label for="password2"><b>Repite la contrase&ntilde;a</b></label>
+      <input type="password" placeholder="Repite la contrase&ntilde;a" name="password2" required>
+
+      <label for="profileimage"><b>Selecciona tu foto de perfil (opcional)</b></label>
+      <input type="file" name="profileimage"><br>
+
+      <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Recordarme
+      </label>
+
+      <p>Al crear una cuenta, aceptas nuestros t&#233;rminos y condiciones <a href="terminosycondiciones.html" target="_balnk" style="color:dodgerblue">T&#233;rminos y condiciones</a>.</p>
+
+      <div class="clearfix">
+
+        <button type="submit" name="submit" class="signupbtn">Registrar</button>
+      </div>
+    </div>
+  </form>
+</div>

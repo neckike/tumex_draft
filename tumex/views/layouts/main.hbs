@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="../stylesheets/layout.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+	<div class="header">
+	  <h1>TuMex</h1>
+	  <p>Uniendo tenistas en M&#233;xico</p>
+	</div>
+
+  <div class="topnav">
+    <a href="/" {{#ifEquals title "Inicio"}} class="active" {{/ifEquals}}>Inicio</a>
+    <a href="/users/torneos" {{#ifEquals title "Torneos"}} class="active" {{/ifEquals}}>Torneos</a>
+    <a href="#" {{#ifEquals title "Streaming"}} class="active" {{/ifEquals}}>Streaming</a>
+    <a href="/users/acercade" {{#ifEquals title "Acercade"}} class="active" {{/ifEquals}}>&#191;Qui&#233;nes somos?</a>
+
+    <div class="dropdown">
+    	<button class="dropbtn">Perfil
+    	<i class="arrow down"></i>
+    	</button>
+    	<div class="dropdown-content">
+      	<a href="#">Mi perfil</a>
+      	<a href="#">Amigos</a>
+      	<a href="#">Torneos inscritos</a>
+      </div>
+	   </div>
+
+
+     <a href="/users/register" style="float:right" {{#ifEquals title "Register"}} class="active" {{/ifEquals}}>Reg&#237;strate</a>
+     <span style="font-size: 10pt; float:right;   padding-top:15px; padding-bottom:15px;"> &#191;No tienes cuenta?</span>
+
+    <div class="loginbutton">
+      <span style="font-size: 10pt">Ingresa a tu portal</span>
+      <button class="myBtn_multi">Login</button>
+
+    </div>
+
+    {{#if user}}
+
+      <a href="#", style = "float:right">Logout</a>
+    {{/if}}
+  </div>
+
+
+  <!-- The Modal -->
+  <div id="id01" class="modal modal_multi">
+    <!-- Modal Content -->
+    <form class="modal-content" action="/users/login">
+
+      <div class="container">
+        <label for="username"><b>Usuario</b></label>
+        <input type="text" placeholder="Usuario" name="username" required>
+
+        <label for="password"><b>Contrase&ntilde;a</b></label>
+        <input type="password" placeholder="Contrase&ntilde;a" name="password" required>
+
+        <button class="loginbtn" type="submit">Login</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Recordarme
+        </label>
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancelar</button>
+        <span class="psw">&#191;Olvidaste la <a href="#">contrase&ntilde;a?</a></span>
+      </div>
+    </form>
+  </div>
+
+  <!-- End ofModal Content -->
+
+	<div>
+		{{{body}}}
+	</div>
+
+  <div class="footer">
+    <h2>Copyrights reserved</h2>
+  </div>
+
+  <script src="../javascripts/loginmenu.js"></script>
+	</body>
+</html>
