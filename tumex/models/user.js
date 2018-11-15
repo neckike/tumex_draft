@@ -51,35 +51,3 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
   });
 
 }
-/*redis*//*
-//Add User Page
-app.get('/user/add', function(req, res, next){
-	res.render('adduser');
-});
-
-//Process Add User Page
-app.post('/user/add', function(req, res, next){
-	let username = req.body.username;
-	let password = req.body.password;
-	let email = req.body.email;
-	let name = req.body.name;
-	let profileimage = req.body.profileimage;
-
-	client.hmset(id, [
-	'first_name', first_name,
-	'last_name', last_name,
-	'email', email,
-	'phone', phone
-	], function(err, reply){
-		if(err){
-			console.log(err);
-		}
-		console.log(reply);
-		res.redirect('/');
-
-
-	});
-});*/
-
-/*redis end*/
-//var User = module.exports =

@@ -107,9 +107,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
-//     return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-// });
-//class={{#ifEquals title "Acercade"}} "active" {{/ifEquals}}
-
 module.exports = app;

@@ -47,6 +47,7 @@ router.get('/login', function(req, res, next) {
 router.post('/login',
   passport.authenticate('local', {failureRedirect:'/users/login', failureFlash: 'Invalid username or password'}),
   function(req, res) {
+		console.log('success you are now logged in');
     req.flash('success', 'You are now logged in');
     res.redirect('/');
 });
@@ -62,10 +63,11 @@ passport.deserializeUser(function(id, done) {
 });
 
 passport.use(new LocalStrategy({username: 'username', password: 'password'},function(username, password, done){
-
+	//console.log('si entreeeee');
   User.getUserByUsername(username, function(err, user){
     if(err) throw err;
     if(!user){
+			console.log('unknown user');
       return done(null, false, {message: 'Unknown User'});
     }
 		// else{
@@ -77,6 +79,7 @@ passport.use(new LocalStrategy({username: 'username', password: 'password'},func
       if(isMatch){
         return done(null, user);
       } else{
+				console.log('invalid password');
         return done(null, false, {message:'Invalid Password'});
       }
     });
@@ -85,7 +88,6 @@ passport.use(new LocalStrategy({username: 'username', password: 'password'},func
 
 
 router.post('/register', upload.single('profileimage'), function(req, res, next) {
-	console.log('por lo menos entre');
   var name = req.body.name;
 	var forname = req.body.forname;
   var email = req.body.email;
