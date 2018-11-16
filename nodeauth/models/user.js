@@ -12,7 +12,7 @@ module.exports.getUserById = function(id, callback){
          err='error';
        }
         if(user){
-          console.log("encontrado!: "+user.username + " email: "+user.email);
+          console.log("id encontrado!: "+user.username + " email: "+user.email);
 
           callback(err, user);
         }
@@ -33,7 +33,7 @@ module.exports.getUserByUsername = function(username, callback){
            err='error';
           }
           if(user){
-            console.log("encontrado!: "+user.username + " email: "+user.email+ " id: "+ user.id);
+            console.log("nombre encontrado!: "+user.username + " email: "+user.email+ " id: "+ user.id);
             callback(err, user);
           }
         });

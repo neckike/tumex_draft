@@ -1,3 +1,8 @@
+{{#if message}}
+    {{#each message}}
+        <div class="{{this.class}}">{{this.message}}</div>
+    {{/each}}
+{{/if}}
 <div class="row">
   <div class="leftcolumn">
     <div class="card">

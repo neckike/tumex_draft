@@ -32,7 +32,11 @@ router.get('/torneos', function(req, res, next) {
 
 
 router.get('/acercade', function(req, res, next) {
-  res.render('acercade', {title:'Acercade'});
+	req.flash('message', [{
+    class: 'alert-danger',
+    message: 'TEST'
+  }]);
+  res.render('acercade', {title:'Acercade', message: req.flash('message')});
 });
 
 router.get('/register', function(req, res, next) {
@@ -42,12 +46,18 @@ router.get('/register', function(req, res, next) {
 
 router.get('/login', function(req, res, next) {
   res.render('login', {title:'Inicio'});
+
 });
 
 router.post('/login',
   passport.authenticate('local', {failureRedirect:'/users/login', failureFlash: 'Invalid username or password'}),
   function(req, res) {
-		console.log('success you are now logged in');
+		//console.log('success you are now logged in');
+
+		// req.flash('message', [{
+	  //   class: 'alert-danger',
+	  //   message: 'YAAAAA BOOOOOII'
+	  // }]);
     req.flash('success', 'You are now logged in');
     res.redirect('/');
 });
@@ -67,7 +77,7 @@ passport.use(new LocalStrategy({username: 'username', password: 'password'},func
   User.getUserByUsername(username, function(err, user){
     if(err) throw err;
     if(!user){
-			console.log('unknown user');
+			//console.log('unknown user');
       return done(null, false, {message: 'Unknown User'});
     }
 		// else{
@@ -79,7 +89,7 @@ passport.use(new LocalStrategy({username: 'username', password: 'password'},func
       if(isMatch){
         return done(null, user);
       } else{
-				console.log('invalid password');
+				//console.log('invalid password');
         return done(null, false, {message:'Invalid Password'});
       }
     });
@@ -133,7 +143,7 @@ router.post('/register', upload.single('profileimage'), function(req, res, next)
           	'nombre', name,
 						'apellido', forname,
           	'email', email,
-          	'usuario', username,
+          	'username', username,
           	'password', password,
             'profileimage', profileimage,
 						'id', id
