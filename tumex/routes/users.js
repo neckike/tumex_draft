@@ -32,35 +32,35 @@ router.get('/torneos', function(req, res, next) {
 
 
 router.get('/acercade', function(req, res, next) {
-	req.flash('message', [{
-    class: 'alert-danger',
-    message: 'TEST'
-  }]);
+	req.flash('message', [{class: 'success', message: 'TEST'}]);
+	//req.flash('success', 'TEST');
   res.render('acercade', {title:'Acercade', message: req.flash('message')});
 });
 
 router.get('/register', function(req, res, next) {
-  res.render('register', {title:'Register'});
-	req.flash('success', 'You are now registered and can login');
+  res.render('register', {title:'Register', message: req.flash('message')});
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', {title:'Inicio'});
-
+  res.render('login', {title:'Inicio', message: req.flash('message')});
 });
 
 router.post('/login',
   passport.authenticate('local', {failureRedirect:'/users/login', failureFlash: 'Invalid username or password'}),
   function(req, res) {
-		//console.log('success you are now logged in');
-
-		// req.flash('message', [{
-	  //   class: 'alert-danger',
-	  //   message: 'YAAAAA BOOOOOII'
-	  // }]);
-    req.flash('success', 'You are now logged in');
+		req.flash('message', [{class: 'success', message: 'Entraste a tu sesion'}]);
     res.redirect('/');
 });
+
+// router.post('/login', function(req, res, next) {
+//     console.log(req.url);
+//     passport.authenticate('local', function(err, user, info) {
+//         console.log("authenticate");
+//         console.log(err);
+//         console.log(user);
+//         console.log(info);
+//     })(req, res, next);
+// });
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -72,13 +72,13 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-passport.use(new LocalStrategy({username: 'username', password: 'password'},function(username, password, done){
+passport.use(new LocalStrategy({username: "username", password: "password"},function(username, password, done){
 	//console.log('si entreeeee');
   User.getUserByUsername(username, function(err, user){
     if(err) throw err;
     if(!user){
 			//console.log('unknown user');
-      return done(null, false, {message: 'Unknown User'});
+      return done(null, false, {class: 'error', message: 'Unknown User'});
     }
 		// else{
 		// 	console.log('aHORA SIIIIIII, tu dijiste: '+ password + 'y la verdadera es: '+ user.password);
@@ -90,7 +90,7 @@ passport.use(new LocalStrategy({username: 'username', password: 'password'},func
         return done(null, user);
       } else{
 				//console.log('invalid password');
-        return done(null, false, {message:'Invalid Password'});
+        return done(null, false, {class: 'error', message:'Invalid Password'});
       }
     });
   });
@@ -153,7 +153,7 @@ router.post('/register', upload.single('profileimage'), function(req, res, next)
           		}
           		console.log(reply);
 
-              req.flash('success', 'You are now registered and can login');
+							req.flash('message', [{class: 'success', message: 'Ya estas registrado y puedes hacer log in'}]);
 
               res.location('/');
           		res.redirect('/');
@@ -171,7 +171,7 @@ router.post('/register', upload.single('profileimage'), function(req, res, next)
 
 router.get('/logout', function(req, res){
 	req.logout();
-	req.flash('success', 'You are now logged out');
+	req.flash('message', [{class: 'success', message: 'Sesion cerrada'}]);
 	res.redirect('/users/login');
 });
 module.exports = router;

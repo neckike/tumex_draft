@@ -256,6 +256,27 @@ span.psw {
 .alert-danger .alert-link {
   color: #843534;
 }
+.success{
+  padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    list-style: none;
+}
+.error{
+  padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    list-style: none;
+}
+
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
     .leftcolumn, .rightcolumn {

@@ -24,7 +24,10 @@ module.exports.getUserByUsername = function(username, callback){
     var err;
     client.sinter("username:"+username, function(err, obj){
       if(!obj){
+        throw err;
+        err='error';
         console.log("No encontrado");
+        //callback(err, user);
       }
       else{
         client.hgetall("user:"+obj, function(err, user){

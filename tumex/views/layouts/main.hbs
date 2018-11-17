@@ -49,7 +49,7 @@
   <!-- The Modal -->
   <div id="id01" class="modal modal_multi">
     <!-- Modal Content -->
-    <form class="modal-content" method="post" action="/users/login" enctype='multipart/form-data'>
+    <form class="modal-content" method="post" action="/users/login"><!-- enctype='text/plain'>-->
 
       <div class="container">
         <label for="username"><b>Usuario</b></label>
@@ -72,6 +72,12 @@
   </div>
 
   <!-- End ofModal Content -->
+
+  {{#if message}}
+      {{#each message}}
+          <div class="{{this.class}}">{{this.message}}</div>
+      {{/each}}
+  {{/if}}
 
 	<div>
 		{{{body}}}

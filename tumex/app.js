@@ -7,7 +7,7 @@ var redis = require('redis');
 var session = require('express-session');
 var exhbs = require('express-handlebars');
 var passport = require('passport');
-var localStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
 const bodyParser = require('body-parser');
@@ -56,7 +56,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser());//"secret"
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -69,25 +69,29 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(session({
   secret:'secret',
   saveUninitialized: true,
-  resave: true,
-  //cookie: { secure: true }
+  resave: true
+  // cookie: {
+  //   httpOnly: true,
+  //   secure: false // for http and true for https
+  // }
 }));
-
+app.use(flash());
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 app.use(require('connect-flash')());
-app.use(flash());
+
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
 
-app.get('*', function(req, res, next){
-  res.locals.user = req.user || null;
-  next();
-});
+// app.get('*', function(req, res, next){
+//   res.locals.user = req.user || null;
+//   next();
+// });
 
 
 app.use('/', indexRouter);
