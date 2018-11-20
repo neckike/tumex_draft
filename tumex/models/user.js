@@ -12,7 +12,7 @@ module.exports.getUserById = function(id, callback){
          err='error';
        }
         if(user){
-          console.log("encontrado!: "+user.username + " email: "+user.email);
+          console.log("id encontrado!: "+user.username + " email: "+user.email);
 
           callback(err, user);
         }
@@ -24,10 +24,7 @@ module.exports.getUserByUsername = function(username, callback){
     var err;
     client.sinter("username:"+username, function(err, obj){
       if(!obj){
-        throw err;
-        err='error';
         console.log("No encontrado");
-        //callback(err, user);
       }
       else{
         client.hgetall("user:"+obj, function(err, user){
@@ -36,7 +33,7 @@ module.exports.getUserByUsername = function(username, callback){
            err='error';
           }
           if(user){
-            console.log("encontrado!: "+user.username + " email: "+user.email+ " id: "+ user.id);
+            console.log("nombre encontrado!: "+user.username + " email: "+user.email+ " id: "+ user.id);
             callback(err, user);
           }
         });

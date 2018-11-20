@@ -15,7 +15,7 @@
   <div class="topnav">
     <a href="/" {{#ifEquals title "Inicio"}} class="active" {{/ifEquals}}>Inicio</a>
     <a href="/users/torneos" {{#ifEquals title "Torneos"}} class="active" {{/ifEquals}}>Torneos</a>
-    <a href="#" {{#ifEquals title "Streaming"}} class="active" {{/ifEquals}}>Streaming</a>
+    <a href="/users/test" {{#ifEquals title "Streaming"}} class="active" {{/ifEquals}}>Streaming</a>
     <a href="/users/acercade" {{#ifEquals title "Acercade"}} class="active" {{/ifEquals}}>&#191;Qui&#233;nes somos?</a>
 
     <div class="dropdown">
@@ -49,7 +49,7 @@
   <!-- The Modal -->
   <div id="id01" class="modal modal_multi">
     <!-- Modal Content -->
-    <form class="modal-content" method="post" action="/users/login"><!-- enctype='text/plain'>-->
+    <form class="modal-content" method="post" action="/users/login" enctype='multipart/form-data'><!-- enctype='text/plain'>-->
 
       <div class="container">
         <label for="username"><b>Usuario</b></label>

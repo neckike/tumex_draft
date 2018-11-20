@@ -45,22 +45,31 @@ router.get('/login', function(req, res, next) {
   res.render('login', {title:'Inicio', message: req.flash('message')});
 });
 
-router.post('/login',
-  passport.authenticate('local', {failureRedirect:'/users/login', failureFlash: 'Invalid username or password'}),
+router.get('/test', function(req, res, next) {
+  res.render('test', {title:'Test', message: req.flash('message')});
+});
+
+
+router.post('/test',
+  passport.authenticate('local', {failureRedirect:'/users/test', failureFlash: 'Invalid username or password'}),
   function(req, res) {
-		req.flash('message', [{class: 'success', message: 'Entraste a tu sesion'}]);
+    req.flash('message', [{class: 'success', message: 'Entraste a tu sesion'}]);
     res.redirect('/');
 });
 
-// router.post('/login', function(req, res, next) {
-//     console.log(req.url);
-//     passport.authenticate('local', function(err, user, info) {
-//         console.log("authenticate");
-//         console.log(err);
-//         console.log(user);
-//         console.log(info);
-//     })(req, res, next);
-// });
+
+
+router.post('/login', function(req, res, next) {
+    console.log(req.url);
+		console.log(req.body);
+    passport.authenticate('local', function(err, user, info) {
+        console.log("authenticate");
+        console.log(err);
+        console.log(user);
+        console.log(info);
+    })(req, res, next);
+
+});
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -72,13 +81,13 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-passport.use(new LocalStrategy({username: "username", password: "password"},function(username, password, done){
-	//console.log('si entreeeee');
+
+passport.use(new LocalStrategy({username: 'username', password: 'password'},function(username, password, done){
+
   User.getUserByUsername(username, function(err, user){
     if(err) throw err;
     if(!user){
-			//console.log('unknown user');
-      return done(null, false, {class: 'error', message: 'Unknown User'});
+      return done(null, false, {message: 'Unknown User'});
     }
 		// else{
 		// 	console.log('aHORA SIIIIIII, tu dijiste: '+ password + 'y la verdadera es: '+ user.password);
@@ -89,8 +98,7 @@ passport.use(new LocalStrategy({username: "username", password: "password"},func
       if(isMatch){
         return done(null, user);
       } else{
-				//console.log('invalid password');
-        return done(null, false, {class: 'error', message:'Invalid Password'});
+        return done(null, false, {message:'Invalid Password'});
       }
     });
   });
