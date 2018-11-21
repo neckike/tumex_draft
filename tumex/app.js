@@ -75,7 +75,7 @@ app.use(session({
   //   secure: false // for http and true for https
   // }
 }));
-app.use(flash());
+//app.use(flash());
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());

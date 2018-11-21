@@ -29,3 +29,7 @@ window.onclick = function(event) {
         modalparent[event.target.getAttribute('data-index')].style.display = "none";
     }
 };
+
+function form_submit() {
+    document.getElementById("search_form").submit();
+}

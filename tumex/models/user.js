@@ -12,7 +12,7 @@ module.exports.getUserById = function(id, callback){
          err='error';
        }
         if(user){
-          console.log("id encontrado!: "+user.username + " email: "+user.email);
+          //console.log("id encontrado!: "+user.username + " email: "+user.email);
 
           callback(err, user);
         }
