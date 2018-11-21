@@ -19,15 +19,6 @@ var expressValidator = require('express-validator');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-/*//Create Redis Client
-let client = redis.createClient();
-
-client.on('connect', function(){
-	console.log('Connected to Redis');
-
-});*/
-
-//require('./helpers/handlebars')(hbs);
 
 var hbs = exhbs.create({
   // Specify helpers which are only registered on this instance.
@@ -81,7 +72,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use(require('connect-flash')());
+//app.use(require('connect-flash')());
+app.use(flash());
 
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);

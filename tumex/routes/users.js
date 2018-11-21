@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
 });*/
 
 router.get('/torneos', function(req, res, next) {
-  res.render('', {title:'Torneos'});
+  res.render('torneos', {title:'Torneos'});
 });
 
 
@@ -51,40 +51,45 @@ router.get('/test', function(req, res, next) {
 
 
 router.post('/login',
-  passport.authenticate('local', {failureRedirect:'/users/login', failureFlash: 'Invalid username or password'}),
+  passport.authenticate('local', {failureRedirect:'/users/login', failureFlash: false}),
   function(req, res) {
-    req.flash('message', [{class: 'success', message: 'Entraste a la sesion'}]);
+    req.flash('message', [{class: 'success', message: 'Bienvenido a tu sesión' }]);
     res.redirect('/');
 });
 
 passport.serializeUser(function(user, done) {
+	console.log('serialized');
   done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
   User.getUserById(id, function(err, user) {
+		console.log('desserialized');
     done(err, user);
   });
 });
 
 
-passport.use(new LocalStrategy({username: 'username', password: 'password'},function(username, password, done){
+passport.use(new LocalStrategy({username: 'username', password: 'password', passReqToCallback : true},function(req, username, password, done){
+	//req.flash('message', [{class: 'success', message: 'Probando' }]);
+	process.nextTick(function(){
+	  User.getUserByUsername(username, function(err, user){
+	    if(err) throw err;
+	    if(!user){
+				return done(null, false, req.flash('message', [{class: 'error', message: 'Invalid Username' }]));
+	    }
 
-  User.getUserByUsername(username, function(err, user){
-    if(err) throw err;
-    if(!user){
-      return done(null, false, {message:'Invalid Password'});
-    }
-
-    User.comparePassword(password, user.password, function(err, isMatch){
-      if(err) return done(err);
-      if(isMatch){
-        return done(null, user);
-      } else{
-        return done(null, false, {message:'Invalid Password'});
-      }
-    });
-  });
+	    User.comparePassword(password, user.password, function(err, isMatch){
+	      if(err) return done(err);
+	      if(isMatch){
+					console.log('matcheo!!!!!');
+	        return done(null, user);
+	      } else{
+					return done(null, false, req.flash('message', [{class: 'error', message: 'Invalid Password' }]));
+	      }
+	    });
+	  });
+	});
 }));
 
 

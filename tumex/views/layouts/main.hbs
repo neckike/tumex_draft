@@ -14,22 +14,25 @@
 
   <div class="topnav">
     <a href="/" {{#ifEquals title "Inicio"}} class="active" {{/ifEquals}}>Inicio</a>
-    <a href="/users/torneos" {{#ifEquals title "Torneos"}} class="active" {{/ifEquals}}>Torneos</a>
-    <a href="/users/test" {{#ifEquals title "Streaming"}} class="active" {{/ifEquals}}>Streaming</a>
-    <a href="/users/acercade" {{#ifEquals title "Acercade"}} class="active" {{/ifEquals}}>&#191;Qui&#233;nes somos?</a>
 
-    <div class="dropdown">
-    	<button class="dropbtn">Perfil
-    	<i class="arrow down"></i>
-    	</button>
-    	<div class="dropdown-content">
-      	<a href="#">Mi perfil</a>
-      	<a href="#">Amigos</a>
-      	<a href="#">Torneos inscritos</a>
-      </div>
-	   </div>
+    {{#if currentUser}}
+
+      <a href="/users/torneos" {{#ifEquals title "Torneos"}} class="active" {{/ifEquals}}>Torneos</a>
+      <a href="#" {{#ifEquals title "Streaming"}} class="active" {{/ifEquals}}>Streaming</a>
 
 
+      <div class="dropdown">
+      	<button class="dropbtn">Perfil
+      	<i class="arrow down"></i>
+      	</button>
+      	<div class="dropdown-content">
+        	<a href="#">Mi perfil</a>
+        	<a href="#">Amigos</a>
+        	<a href="#">Torneos inscritos</a>
+        </div>
+  	   </div>
+    {{else}}
+     <a href="/users/acercade" {{#ifEquals title "Acercade"}} class="active" {{/ifEquals}}>&#191;Qui&#233;nes somos?</a>
      <a href="/users/register" style="float:right" {{#ifEquals title "Register"}} class="active" {{/ifEquals}}>Reg&#237;strate</a>
      <span style="font-size: 10pt; float:right;   padding-top:15px; padding-bottom:15px;"> &#191;No tienes cuenta?</span>
 
@@ -38,10 +41,11 @@
       <button class="myBtn_multi">Login</button>
 
     </div>
+    {{/if}}
 
-    {{#if user}}
+    {{#if currentUser}}
 
-      <a href="#", style = "float:right">Logout</a>
+      <a href="/users/logout", style = "float:right">Logout</a>
     {{/if}}
   </div>
 

@@ -23,24 +23,20 @@ module.exports.getUserById = function(id, callback){
 module.exports.getUserByUsername = function(username, callback){
     var err;
     client.sinter("username:"+username, function(err, obj){
-      if(!obj){
-        console.log("No encontrado");
-      }
-      else{
-        client.hgetall("user:"+obj, function(err, user){
-          if(err){
-           throw err;
-           err='error';
-          }
-          if(user){
-            console.log("nombre encontrado!: "+user.username + " email: "+user.email+ " id: "+ user.id);
-            callback(err, user);
-          }
-        });
-      }
-
+      client.hgetall("user:"+obj, function(err, user){
+      if(err){
+         throw err;
+         err='error';
+       }
+      else if(user){
+          console.log("nombre encontrado!: "+user.username + " email: "+user.email+ " id: "+ user.id);
+          callback(err, user);
+        }
+        else{
+          callback(err,null);
+        }
+      });
     });
-
 }
 
 module.exports.comparePassword = function(candidatePassword, hash, callback){
