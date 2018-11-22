@@ -13,28 +13,28 @@
 	</div>
 
   <div class="topnav">
-    <a href="/" {{#ifEquals title "Inicio"}} class="active" {{/ifEquals}}>Inicio</a>
+
 
     {{#if currentUser}}
-
-      <a href="/users/torneos" {{#ifEquals title "Torneos"}} class="active" {{/ifEquals}}>Torneos</a>
-      <a href="#" {{#ifEquals title "Streaming"}} class="active" {{/ifEquals}}>Streaming</a>
-
-
       <div class="dropdown">
-      	<button class="dropbtn">Perfil
-      	<i class="arrow down"></i>
-      	</button>
-      	<div class="dropdown-content">
-        	<a href="#">Mi perfil</a>
-        	<a href="#">Amigos</a>
-        	<a href="#">Torneos inscritos</a>
+        <button class="dropbtn">Perfil
+        <i class="arrow down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="/users/profile">Mi perfil</a>
+          <a href="/users/friends">Amigos</a>
+          <a href="#">Torneos inscritos</a>
         </div>
-  	   </div>
+       </div>
+
+       <a href="/users/torneos" {{#ifEquals title "Torneos"}} class="active" {{/ifEquals}}>Torneos</a>
+       <a href="/users/streaming" {{#ifEquals title "Streaming"}} class="active" {{/ifEquals}}>Streaming</a>
+
     {{else}}
-     <a href="/users/acercade" {{#ifEquals title "Acercade"}} class="active" {{/ifEquals}}>&#191;Qui&#233;nes somos?</a>
-     <a href="/users/register" style="float:right" {{#ifEquals title "Register"}} class="active" {{/ifEquals}}>Reg&#237;strate</a>
-     <span style="font-size: 10pt; float:right;   padding-top:15px; padding-bottom:15px;"> &#191;No tienes cuenta?</span>
+      <a href="/" {{#ifEquals title "Inicio"}} class="active" {{/ifEquals}}>Inicio</a>
+      <a href="/acercade" {{#ifEquals title "Acercade"}} class="active" {{/ifEquals}}>&#191;Qui&#233;nes somos?</a>
+      <a href="/register" style="float:right" {{#ifEquals title "Register"}} class="active" {{/ifEquals}}>Reg&#237;strate</a>
+      <span style="font-size: 10pt; float:right;   padding-top:15px; padding-bottom:15px;"> &#191;No tienes cuenta?</span>
 
     <div class="loginbutton">
       <span style="font-size: 10pt">Ingresa a tu portal</span>
@@ -53,7 +53,7 @@
   <!-- The Modal -->
   <div id="id01" class="modal modal_multi">
     <!-- Modal Content -->
-    <form class="modal-content" method="post" action="/users/login"><!-- enctype='text/plain'>-->
+    <form class="modal-content" method="post" action="/users/profile"><!-- enctype='text/plain'>-->
 
       <div class="container">
         <label for="username"><b>Usuario</b></label>

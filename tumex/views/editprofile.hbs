@@ -1,0 +1,58 @@
+<form class="modal-edit" method="post" action="/users/editprofile">
+  <div class="container">
+    <p>Editar tus campos los campos indicados</p>
+    <hr>
+
+    <label for="edad"><b>Edad</b></label>
+    <input type="text" value="{{user.edad}}" name="edad">
+
+    <label for="club"><b>Club</b></label>
+    <input type="text" value="{{user.club}}" name="club">
+
+    <label for="altura"><b>Altura</b></label>
+    <input type="text" value="{{user.altura}}" name="altura">
+
+    <br>
+    <label for="genero"><b>Soy</b></label>
+    <select name="genero">
+      <option value="hombre">Hombre</option>
+      <option value="mujer">Mujer</option>
+    </select>
+
+    <br><br>
+    <label for="mano"><b>Soy</b></label>
+    <select name="mano">
+      <option value="diestro">Diestro</option>
+      <option value="zurdo">Zurdo</option>
+      <option value="ninguno" selected>Prefiero no decir</option>
+    </select>
+
+    <br><br>
+    <label for="reves"><b>Mi reves es:</b></label>
+    <select name="reves">
+      <option value="una">A una mano</option>
+      <option value="dos">A dos manos</option>
+      <option value="niguna" selected>Prefiero no decir</option>
+    </select>
+
+    <br><br>
+    <label for="raquetas"><b>Marca de raquetas</b></label>
+    <input type="text" value="{{user.raquetas}}" name="raquetas">
+
+    <br><br>
+    <label for="superficie"><b>Superficie preferida para jugar</b></label>
+    <select name="superficie">
+      <option value="arcilla">Arcilla</option>
+      <option value="dura">Dura</option>
+      <option value="pasto">Pasto</option>
+    </select>
+
+    <br><br>
+    <label for="acercademi"><b>Acerca de mi</b></label>
+    <textarea name="acercademi" rows="10" cols="30">{{user.acercademi}}</textarea>
+
+    <div class="clearfix">
+      <button type="submit" name="submit" class="signupbtn">Salvar</button>
+    </div>
+  </div>
+</form>

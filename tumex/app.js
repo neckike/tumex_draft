@@ -70,7 +70,11 @@ app.use(session({
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function(req, res, next) {
+    res.locals.user = req.user; // This is the important line
 
+    next();
+});
 
 //app.use(require('connect-flash')());
 app.use(flash());
@@ -85,6 +89,8 @@ app.use(function (req, res, next) {
 //   next();
 // });
 
+
+app.use(express.static('./uploads')); 
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

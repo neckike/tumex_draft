@@ -2,7 +2,7 @@ var redis = require('redis');
 var bcrypt = require('bcryptjs');
 
 var User = module.exports;
-let client = require('../routes/users');
+let client = require('../routes/index');
 
 module.exports.getUserById = function(id, callback){
       var err;

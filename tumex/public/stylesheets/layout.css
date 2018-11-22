@@ -178,6 +178,13 @@ i {
     width: 25%; /* Could be more or less, depending on screen size */
 }
 
+.modal-edit {
+    background-color: #fefefe;
+    margin: 5px; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 25%; /* Could be more or less, depending on screen size */
+}
+
 input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
