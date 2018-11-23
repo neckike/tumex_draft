@@ -9,30 +9,32 @@
     <label for="club"><b>Club</b></label>
     <input type="text" value="{{user.club}}" name="club">
 
+    <br><br>
     <label for="altura"><b>Altura</b></label>
-    <input type="text" value="{{user.altura}}" name="altura">
+    <input type="number" name="altura"
+     min="1.40" max="2.10" step=".01" value="{{user.altura}}"><span>m</span>
 
-    <br>
+    <br><br>
     <label for="genero"><b>Soy</b></label>
     <select name="genero">
-      <option value="hombre">Hombre</option>
-      <option value="mujer">Mujer</option>
+      <option value="hombre" {{#ifEquals user.genero "hombre"}} selected {{/ifEquals}}>Hombre</option>
+      <option value="mujer" {{#ifEquals user.genero "mujer"}} selected {{/ifEquals}}>Mujer</option>
     </select>
 
     <br><br>
     <label for="mano"><b>Soy</b></label>
     <select name="mano">
-      <option value="diestro">Diestro</option>
-      <option value="zurdo">Zurdo</option>
-      <option value="ninguno" selected>Prefiero no decir</option>
+      <option value="diestro" {{#ifEquals user.mano "diestro"}} selected {{/ifEquals}}>Diestro</option>
+      <option value="zurdo" {{#ifEquals user.mano "zurdo"}} selected {{/ifEquals}}>Zurdo</option>
+      <option value="ninguno" {{#ifEquals user.mano "ninguno"}} selected {{/ifEquals}}>Prefiero no decir</option>
     </select>
 
     <br><br>
     <label for="reves"><b>Mi reves es:</b></label>
     <select name="reves">
-      <option value="una">A una mano</option>
-      <option value="dos">A dos manos</option>
-      <option value="niguna" selected>Prefiero no decir</option>
+      <option value="una" {{#ifEquals user.reves "una"}} selected {{/ifEquals}}>A una mano</option>
+      <option value="dos" {{#ifEquals user.reves "dos"}} selected {{/ifEquals}}>A dos manos</option>
+      <option value="niguna" {{#ifEquals user.reves "ninguna"}} selected {{/ifEquals}}selected>Prefiero no decir</option>
     </select>
 
     <br><br>
@@ -42,9 +44,9 @@
     <br><br>
     <label for="superficie"><b>Superficie preferida para jugar</b></label>
     <select name="superficie">
-      <option value="arcilla">Arcilla</option>
-      <option value="dura">Dura</option>
-      <option value="pasto">Pasto</option>
+      <option value="arcilla" {{#ifEquals user.superficie "arcilla"}} selected {{/ifEquals}}>Arcilla</option>
+      <option value="dura" {{#ifEquals user.superficie "dura"}} selected {{/ifEquals}}>Dura</option>
+      <option value="pasto" {{#ifEquals user.superficie "pasto"}} selected {{/ifEquals}}>Pasto</option>
     </select>
 
     <br><br>

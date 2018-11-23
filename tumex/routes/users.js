@@ -45,13 +45,21 @@ router.post('/editprofile', function(req, res, next) {
   var altura = req.body.altura;
   var raquetas = req.body.raquetas;
   var acercademi = req.body.acercademi;
+  var genero = req.body.genero;
+  var mano = req.body.mano;
+  var reves = req.body.reves;
+  var superficie = req.body.superficie;
 
   client.hmset('user:'+req.user.id, [
   	'edad', edad,
 		'club', club,
   	'altura', altura,
   	'raquetas', raquetas,
-  	'acercademi', acercademi
+  	'acercademi', acercademi,
+    'genero', genero,
+    'mano', mano,
+    'reves', reves,
+    'superficie', superficie
   	], function(err, reply){
   		if(err){
   			console.log(err);
