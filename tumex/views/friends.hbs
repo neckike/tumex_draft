@@ -16,6 +16,12 @@
   <div class="centercolumn" >
     <div class="card">
       <h2>Tus amigos:</h2>
+      <br>
+      {{#if searchedUser}}
+        <p>Usuario encontrado:</p>
+        <br>
+        <p>{{searchedUser.nombre}} {{searchedUser.apellido}}</p>
+      {{/if}}
     </div>
 
 
