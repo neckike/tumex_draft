@@ -6,13 +6,29 @@
       <p>{{user.nombre}} {{user.apellido}}</p>
       <a href="/users/editprofile">editar informacion</a>
     </div>
+
+    <div class="card">
+      <p>Club: {{user.club}}</p>
+      <p>Altura: {{user.altura}} m</p>
+      <p>Club: {{user.club}}</p>
+      <p>Raquetas: {{user.raquetas}}</p>
+      <p>Mano: {{user.mano}}</p>
+      <p>Reves: {{user.reves}}</p>
+      <p>Superficie preferida: {{user.superficie}}</p>
+      <p>Acerca de mi: <br><br>{{user.acercademi}}</p>
+    </div>
   </div>
   <div class="centercolumn" >
     <div class="card">
       <h2>Bienvenid{{#ifEquals user.genero "mujer"}}a{{/ifEquals}}{{#ifEquals user.genero "hombre"}}o{{/ifEquals}} {{user.username}}</h2>
-      <h5>sdsd</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
+      <h3>Rank: {{user.rank}}</h3>
+      <div class="fakeimg" style="height:200px;">Imagen del rank</div>
+      <p>Mucho tenis</p>
+    </div>
+
+    <div class="card">
+      <h2>Historial de partidos</h2>
+      <div class="fakeimg" style="height:200px;">Ultimos partidos</div>
       <p>Mucho tenis</p>
     </div>
 

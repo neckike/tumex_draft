@@ -45,6 +45,11 @@ router.get('/searchfriends', ensureAuthenticated, function(req, res, next) {
   res.render('friends', {title:'Friends', message: req.flash('message')});
 });
 
+router.get('/gotofriend', ensureAuthenticated, function(req, res, next) {
+  res.locals.searchedUser = tmp_user;
+  res.render('gotofriend', {title:'GoToFriend', message: req.flash('message')});
+});
+
 router.post('/searchfriends', function(req, res, next) {
 
   var username = req.body.search;
@@ -102,6 +107,11 @@ router.post('/editprofile', function(req, res, next) {
   	});
 });
 
+/*router.post('/searchfriends', function(req, res, next) {
+
+  res.location('/users/profile');
+  res.redirect('/users/profile');
+});*/
 function ensureAuthenticated(req, res, next){
   res.locals.currentUser = req.isAuthenticated();
 	res.locals.username = {user: req.user.username};
